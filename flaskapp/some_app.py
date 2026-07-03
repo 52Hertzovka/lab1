@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-# === ВАША КОНФИГУРАЦИЯ ИЗ МЕТОДИЧКИ ===
+#Капча
 SECRET_KEY = 'secret'
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['RECAPTCHA_USE_SSL'] = False
@@ -22,7 +22,6 @@ app.config['UPLOAD_FOLDER'] = os.path.join('static', 'images')
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 
-# Форма для валидации капчи через Flask-WTF
 class CaptchaForm(FlaskForm):
     recaptcha = RecaptchaField()
 
@@ -82,7 +81,7 @@ def index():
                     build_histogram(orig_path, 'orig_hist.png')
                     build_histogram(res_path, 'res_hist.png')
                     
-                    # Пути с таймштампом против кэширования браузером
+                    
                     ts = int(time.time())
                     orig_img_url = f"/static/images/original.jpg?v={ts}"
                     res_img_url = f"/static/images/result.jpg?v={ts}"
